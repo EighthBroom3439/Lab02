@@ -1,0 +1,53 @@
+# Лабораторная работа 2 по Тимпу
+
+```bash
+cat > sources/print.cpp <<EOF
+#include <print.hpp>
+
+void print(const std::string& text, std::ostream& out)
+{
+  out << text;
+}
+
+void print(const std::string& text, std::ofstream& out)
+{
+  out << text;
+}
+EOF
+```
+
+```bash
+cat > include/print.hpp <<EOF
+#include <fstream>
+#include <iostream>
+#include <string>
+
+void print(const std::string& text, std::ofstream& out);
+void print(const std::string& text, std::ostream& out = std::cout);
+EOF
+```
+
+```bash
+cat > examples/example1.cpp <<EOF
+#include <print.hpp>
+
+int main(int argc, char** argv)
+{
+  print("hello");
+}
+EOF
+```
+
+```bash
+cat > examples/example2.cpp <<EOF
+#include <print.hpp>
+
+#include <fstream>
+
+int main(int argc, char** argv)
+{
+  std::ofstream file("log.txt");
+  print(std::string("hello"), file);
+}
+EOF
+```
